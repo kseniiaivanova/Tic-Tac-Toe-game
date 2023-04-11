@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
-import PlayerInput from './components/PlayerInput.vue';
+import PlayerInput from './components/PlayerInputX.vue';
 import TickTackGame from './components/TickTackGame.vue';
 </script>
 
