@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import PlayerInput from './components/PlayerInput.vue';
+import TickTackGame from './components/TickTackGame.vue';
 </script>
 
 <template>
-  <PlayerInput></PlayerInput>
+  <TickTackGame></TickTackGame>
 </template>
 
 <style scoped>
