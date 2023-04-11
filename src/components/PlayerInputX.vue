@@ -3,6 +3,9 @@ import { Player } from "../models/Player";
 import { ref } from "vue";
 
 const state = ref<Player>(new Player("", "x"));
+
+const emit = defineEmits(["AddPlayerX"]);
+const handleClick = () => { emit("AddPlayerX", state.value); };
 </script>
 
 <template>
@@ -10,7 +13,7 @@ const state = ref<Player>(new Player("", "x"));
         <form @submit.prevent>
             <span>Spelare X</span>
             <input type="text" placeholder="Namn" v-model="state.name">
-            <button>Spara</button>
+            <button @click="handleClick">Spara</button>
         </form>
     </div>
 </template>
