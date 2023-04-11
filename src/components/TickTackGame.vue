@@ -1,22 +1,40 @@
 <script setup lang="ts">
 import PlayerInputX from './PlayerInputX.vue';
-import ShowPlayerInput from './ShowPlayerInput.vue';
 import { Player } from "../models/Player";
 import PlayerInputO from './PlayerInputO.vue';
 import GameBoard from './GameBoard.vue';
 import { ref } from 'vue';
 
-const show = ref(false);
-
-const showBoard = ref(false);
-
 let players = ref<Player[]>([]);
+
+let show = ref(true);
+
+let showInputs = ref(true);
+
+
+const AddPlayerX = (playerX: Player) => {
+    console.log(playerX.name);
+    players.value.push(playerX);
+    show.value = false;
+
+
+}
+
+
+const AddPlayerO = (playerO: Player) => {
+    console.log(playerO.name);
+    showInputs.value = false;
+    players.value.push(playerO);
+
+
+}
+
 </script>
 
 <template>
-    <div v-if="showBoard!">
-        <PlayerInputX v-if="show"></PlayerInputX>
-        <PlayerInputO v-else></PlayerInputO>
+    <div v-if="showInputs">
+        <PlayerInputX v-if="show" @add-player-x="AddPlayerX"></PlayerInputX>
+        <PlayerInputO v-else @add-player-o="AddPlayerO"></PlayerInputO>
     </div>
     <GameBoard v-else></GameBoard>
 </template>
