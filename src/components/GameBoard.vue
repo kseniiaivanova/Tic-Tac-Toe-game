@@ -2,6 +2,7 @@
 
 import { Player } from '../models/Player';
 import { ref } from 'vue';
+import { watch } from 'vue';
 
 const props = defineProps<IPlayers>();
 
@@ -68,23 +69,43 @@ const handleClick = (index: number) => {
 
 
 
+const restart = () => {
+    gameBoard.value = Array(9).fill('');
+    currentPlayer.value = props.players[0];
+    winner.value = undefined;
+    gameOver.value = false;
 
-
+};
 </script>
 
 <template>
-    <div class="container">
-        <div class="tile" v-for="(cell, index) in gameBoard" :key="index" @click="handleClick(index)">
-            {{ cell }}
-        </div>
+    <div class="wrapper">
+        <h3>Tic Tac Toe Game</h3>
+        <p v-if="currentPlayer">Det är {{ currentPlayer.name }}s tur</p>
+        <div class="gameboard">
+            <div class="tile" v-for="(cell, index) in gameBoard" :key="index" @click="handleClick(index)">
+                {{ cell }}
+            </div>
 
+        </div>
+        <button v-if="gameOver" @click="restart">Börja om från början</button>
     </div>
 </template>
+
 <style scoped>
-.container {
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.gameboard {
+
     display: flex;
     flex-wrap: wrap;
-    width: 400px;
+    width: 306px;
     gap: 2px;
 }
 
@@ -93,5 +114,9 @@ const handleClick = (index: number) => {
     width: 100px;
     height: 100px;
     background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
 }
 </style>
