@@ -36,6 +36,6 @@ const AddPlayerO = (playerO: Player) => {
         <PlayerInputX v-if="show" @add-player-x="AddPlayerX"></PlayerInputX>
         <PlayerInputO v-else @add-player-o="AddPlayerO"></PlayerInputO>
     </div>
-    <GameBoard v-else></GameBoard>
+    <GameBoard :players="players" v-else></GameBoard>
 </template>
 <style></style>
