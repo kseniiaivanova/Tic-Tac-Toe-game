@@ -1,28 +1,83 @@
 <script setup lang="ts">
-import PlayerInputX from './PlayerInputX.vue';
-import PlayerInputO from './PlayerInputO.vue';
+
 import { Player } from '../models/Player';
+import { ref } from 'vue';
 
-const props = defineProps<ICurrentPlayers>();
+const props = defineProps<IPlayers>();
 
-interface ICurrentPlayers {
+interface IPlayers {
 
     players: Player[];
 
 };
 
-const handleClick = (i: number, event: MouseEvent) => {
-    console.log("Du klickade på knappen", i, event);
-    console.log(props.players[0].role);
+const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+];
+
+
+
+let gameBoard = ref<string[]>(Array(9).fill(''));
+
+let currentPlayer = ref<Player>();
+
+currentPlayer.value = props.players[0];
+
+let winner = ref<Player>();
+
+let gameOver = ref(false);
+
+const findWinner = () => {
+
+    for (let i = 0; i < winningCombinations.length; i++) {
+        const [a, b, c] = winningCombinations[i];
+        if (gameBoard.value[a] && gameBoard.value[a] === gameBoard.value[b] && gameBoard.value[a] === gameBoard.value[c]) {
+            winner.value = currentPlayer.value;
+            gameOver.value = true;
+            break;
+        }
+    }
 
 };
+
+const togglePlayer = () => {
+    currentPlayer.value = currentPlayer.value === props.players[0] ? props.players[1] : props.players[0];
+};
+
+
+const handleClick = (index: number) => {
+
+
+    if (!gameOver.value && !gameBoard.value[index]) {
+        gameBoard.value[index] = currentPlayer.value!.role;
+        findWinner();
+
+        if (!gameOver.value) {
+            togglePlayer();
+        }
+    }
+
+};
+
+
+
+
+
 </script>
 
 <template>
     <div class="container">
-        <div class="tile" v-for="i in 9" @click="handleClick(i, $event)">
-
+        <div class="tile" v-for="(cell, index) in gameBoard" :key="index" @click="handleClick(index)">
+            {{ cell }}
         </div>
+
     </div>
 </template>
 <style scoped>
