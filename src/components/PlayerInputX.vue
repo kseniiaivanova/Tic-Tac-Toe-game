@@ -11,7 +11,7 @@ const handleClick = () => { emit("AddPlayerX", state.value); };
 <template>
     <div class="player-name">
         <form @submit.prevent>
-            <span>Spelare X</span>
+            <label for="player X">Spelare X</label>
             <input type="text" placeholder="Namn" v-model="state.name">
             <button @click="handleClick">Spara</button>
         </form>

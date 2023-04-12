@@ -13,7 +13,7 @@ let showInputs = ref(true);
 
 
 const AddPlayerX = (playerX: Player) => {
-    console.log(playerX.name);
+    console.log(playerX);
     players.value.push(playerX);
     show.value = false;
 
@@ -22,7 +22,7 @@ const AddPlayerX = (playerX: Player) => {
 
 
 const AddPlayerO = (playerO: Player) => {
-    console.log(playerO.name);
+    console.log(playerO);
     showInputs.value = false;
     players.value.push(playerO);
 
