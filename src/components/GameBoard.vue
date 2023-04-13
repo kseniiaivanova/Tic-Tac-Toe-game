@@ -49,9 +49,16 @@ const findWinner = () => {
 };
 
 const togglePlayer = () => {
-    currentPlayer.value = currentPlayer.value === props.players[0] ? props.players[1] : props.players[0];
-};
+    //currentPlayer.value = currentPlayer.value === props.players[0] ? props.players[1] : props.players[0];
 
+    if (currentPlayer.value === props.players[0]) {
+        currentPlayer.value = props.players[1]
+
+    } else {
+        currentPlayer.value = props.players[0]
+    }
+
+};
 
 const handleClick = (index: number) => {
 
@@ -71,7 +78,7 @@ const handleClick = (index: number) => {
 
 const restart = () => {
     gameBoard.value = Array(9).fill('');
-    currentPlayer.value = props.players[0];
+    currentPlayer.value = props.players[Math.floor(Math.random() * 2)];
     winner.value = undefined;
     gameOver.value = false;
 
@@ -81,13 +88,22 @@ const restart = () => {
 <template>
     <div class="wrapper">
         <h3>Tic Tac Toe Game</h3>
-        <p v-if="currentPlayer">Det är {{ currentPlayer.name }}s tur</p>
+        <div v-if="!gameOver && currentPlayer">
+            <p v-if="!gameOver && currentPlayer">Det är {{ currentPlayer.name }}s tur</p>
+
+        </div>
+        <div v-else>
+            <p>Grattis {{ currentPlayer!.name }}! Du vann!</p>
+        </div>
+
         <div class="gameboard">
+
             <div class="tile" v-for="(cell, index) in gameBoard" :key="index" @click="handleClick(index)">
                 {{ cell }}
             </div>
 
         </div>
+
         <button v-if="gameOver" @click="restart">Börja om från början</button>
     </div>
 </template>
