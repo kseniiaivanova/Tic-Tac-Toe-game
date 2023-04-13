@@ -22,7 +22,7 @@ const AddPlayerX = (playerX: Player) => {
 
 
 const AddPlayerO = (playerO: Player) => {
-    console.log(playerO);
+
     showInputs.value = false;
     players.value.push(playerO);
 

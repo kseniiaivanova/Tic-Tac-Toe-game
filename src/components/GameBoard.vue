@@ -2,7 +2,8 @@
 
 import { Player } from '../models/Player';
 import { ref } from 'vue';
-import { watch } from 'vue';
+import Score from './Score.vue';
+
 
 const props = defineProps<IPlayers>();
 
@@ -35,21 +36,46 @@ let winner = ref<Player>();
 
 let gameOver = ref(false);
 
+let winners = ref<Player[]>([]);
+
+let hideScore = ref(true);
+let win = ref(false);
+
 const findWinner = () => {
 
     for (let i = 0; i < winningCombinations.length; i++) {
+
         const [a, b, c] = winningCombinations[i];
         if (gameBoard.value[a] && gameBoard.value[a] === gameBoard.value[b] && gameBoard.value[a] === gameBoard.value[c]) {
             winner.value = currentPlayer.value;
             gameOver.value = true;
-            break;
+            currentPlayer.value!.score++;
+            winners.value.push(currentPlayer.value!);
+
+            win.value = true;
+
+            return winner.value;
+
         }
+    }
+
+    const isBoardFull = gameBoard.value.every(cell => cell !== '');
+    if (isBoardFull) {
+
+        gameOver.value = true;
+        win.value = false;
+
+        return null;
+
     }
 
 };
 
+
+
+
+
 const togglePlayer = () => {
-    //currentPlayer.value = currentPlayer.value === props.players[0] ? props.players[1] : props.players[0];
 
     if (currentPlayer.value === props.players[0]) {
         currentPlayer.value = props.players[1]
@@ -60,17 +86,39 @@ const togglePlayer = () => {
 
 };
 
-const handleClick = (index: number) => {
 
+
+
+
+
+const handleClick = (index: number) => {
 
     if (!gameOver.value && !gameBoard.value[index]) {
         gameBoard.value[index] = currentPlayer.value!.role;
         findWinner();
 
+        if (winner.value) {
+            gameOver.value = true;
+        }
+
+        console.log(gameOver.value);
+        console.log(winner.value);
+
+
+
+
         if (!gameOver.value) {
             togglePlayer();
+
         }
+
+
+
+
     }
+
+
+
 
 };
 
@@ -83,17 +131,29 @@ const restart = () => {
     gameOver.value = false;
 
 };
+
+const showScore = () => {
+    console.log("Du klickade på Score")
+    hideScore.value = false;
+};
 </script>
 
+
 <template>
-    <div class="wrapper">
+    <div class="wrapper" v-if="hideScore">
         <h3>Tic Tac Toe Game</h3>
+
+
         <div v-if="!gameOver && currentPlayer">
             <p v-if="!gameOver && currentPlayer">Det är {{ currentPlayer.name }}s tur</p>
 
         </div>
         <div v-else>
-            <p>Grattis {{ currentPlayer!.name }}! Du vann!</p>
+
+            <p class="win" v-if="win">Grattis {{ currentPlayer!.name }}! Du vann!</p>
+
+
+            <p class="draw" v-else>DRAW!</p>
         </div>
 
         <div class="gameboard">
@@ -104,9 +164,13 @@ const restart = () => {
 
         </div>
 
-        <button v-if="gameOver" @click="restart">Börja om från början</button>
+        <button v-if="gameOver" @click="restart">Börja nytt spel</button>
+        <button @click="showScore">Visa poäng</button>
+
     </div>
+    <Score :winners="winners" v-else></Score>
 </template>
+
 
 <style scoped>
 .wrapper {
