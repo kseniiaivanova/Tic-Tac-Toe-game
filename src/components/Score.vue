@@ -3,7 +3,11 @@
 import { Player } from '../models/Player';
 import GameBoard from './GameBoard.vue';
 
-let props = defineProps<IWinners>();
+const emit = defineEmits(["backToGame"]);
+
+
+
+const props = defineProps<IWinners>();
 
 interface IWinners {
 
@@ -19,7 +23,7 @@ interface IWinners {
         <p v-if="props.winners && props.winners.length > 1"> {{ props.winners[1].name }}</p>
         <p v-if="props.winners && props.winners.length > 1"> {{ props.winners[1].score }}</p>
     </div>
-    <button>Visa spel</button>
+    <button @click="$emit(`backToGame`)">Visa spel</button>
     <button>Borja nytt spel</button>
 </template>
 <style scoped>

@@ -12,7 +12,7 @@ let show = ref(true);
 let showInputs = ref(true);
 
 
-const AddPlayerX = (playerX: Player) => {
+const addPlayerX = (playerX: Player) => {
     console.log(playerX);
     players.value.push(playerX);
     show.value = false;
@@ -21,7 +21,7 @@ const AddPlayerX = (playerX: Player) => {
 }
 
 
-const AddPlayerO = (playerO: Player) => {
+const addPlayerO = (playerO: Player) => {
 
     showInputs.value = false;
     players.value.push(playerO);
@@ -33,8 +33,8 @@ const AddPlayerO = (playerO: Player) => {
 
 <template>
     <div v-if="showInputs">
-        <PlayerInputX v-if="show" @add-player-x="AddPlayerX"></PlayerInputX>
-        <PlayerInputO v-else @add-player-o="AddPlayerO"></PlayerInputO>
+        <PlayerInputX v-if="show" @add-player-x="addPlayerX"></PlayerInputX>
+        <PlayerInputO v-else @add-player-o="addPlayerO"></PlayerInputO>
     </div>
     <GameBoard :players="players" v-else></GameBoard>
 </template>

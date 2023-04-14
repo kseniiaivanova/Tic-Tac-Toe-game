@@ -136,6 +136,13 @@ const showScore = () => {
     console.log("Du klickade på Score")
     hideScore.value = false;
 };
+
+const backToGame = () => {
+    hideScore.value = true;
+    console.log(hideScore.value);
+
+}
+
 </script>
 
 
@@ -168,7 +175,7 @@ const showScore = () => {
         <button @click="showScore">Visa poäng</button>
 
     </div>
-    <Score :winners="winners" v-else></Score>
+    <Score :winners="winners" v-else @back-to-game="backToGame"></Score>
 </template>
 
 
