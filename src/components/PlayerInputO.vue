@@ -2,7 +2,7 @@
 import { Player } from '../models/Player';
 import { ref } from 'vue';
 
-const state = ref<Player>(new Player("", "O"));
+const state = ref<Player>(new Player("", "O", 0));
 const emit = defineEmits(["AddPlayerO"]);
 const handleClick = () => { emit("AddPlayerO", state.value); };
 
