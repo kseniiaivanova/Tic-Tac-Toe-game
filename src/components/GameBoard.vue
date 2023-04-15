@@ -132,6 +132,14 @@ const restart = () => {
 
 };
 
+
+const startNew = () => {
+    backToGame();
+    restart();
+
+};
+
+
 const showScore = () => {
     console.log("Du klickade på Score")
     hideScore.value = false;
@@ -139,7 +147,7 @@ const showScore = () => {
 
 const backToGame = () => {
     hideScore.value = true;
-    console.log(hideScore.value);
+
 
 }
 
@@ -175,7 +183,7 @@ const backToGame = () => {
         <button @click="showScore">Visa poäng</button>
 
     </div>
-    <Score :winners="winners" v-else @back-to-game="backToGame"></Score>
+    <Score v-else :winners="winners" :players="players" @back-to-game="backToGame" @start-new="startNew"></Score>
 </template>
 
 
