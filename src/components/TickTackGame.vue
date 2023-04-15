@@ -4,6 +4,7 @@ import { Player } from "../models/Player";
 import PlayerInputO from './PlayerInputO.vue';
 import GameBoard from './GameBoard.vue';
 import { ref } from 'vue';
+import Score from './Score.vue';
 
 let players = ref<Player[]>([]);
 

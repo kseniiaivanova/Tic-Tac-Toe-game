@@ -30,5 +30,6 @@ const handleClick = () => { emit("AddPlayerO", state.value); };
     gap: 10px;
 
 
+
 }
 </style>
