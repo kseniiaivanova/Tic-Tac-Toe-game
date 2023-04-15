@@ -4,7 +4,6 @@ import { Player } from "../models/Player";
 import PlayerInputO from './PlayerInputO.vue';
 import GameBoard from './GameBoard.vue';
 import { ref } from 'vue';
-import Score from './Score.vue';
 
 let players = ref<Player[]>([]);
 
@@ -37,6 +36,7 @@ const addPlayerO = (playerO: Player) => {
         <PlayerInputX v-if="show" @add-player-x="addPlayerX"></PlayerInputX>
         <PlayerInputO v-else @add-player-o="addPlayerO"></PlayerInputO>
     </div>
+
     <GameBoard :players="players" v-else></GameBoard>
 </template>
 <style></style>

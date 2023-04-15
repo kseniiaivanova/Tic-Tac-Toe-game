@@ -32,18 +32,37 @@ let currentPlayer = ref<Player>();
 
 currentPlayer.value = props.players[0];
 
-let winner = ref<Player>();
+const winner = ref<Player>();
 
-let gameOver = ref(false);
+const gameOver = ref(false);
 
-let winners = ref<Player[]>([]);
+const winners = ref<Player[]>([]);
 
-let hideScore = ref(true);
-let win = ref(false);
+const hideScore = ref(true);
+const win = ref(false);
+
+const checkDraw = () => {
+    const isBoardFull = gameBoard.value.every(cell => cell !== '');
+    if (isBoardFull) {
+
+        gameOver.value = true;
+        win.value = false;
+        winner.value = undefined;
+        console.log("hej");
+
+
+
+    };
+
+};
+
+
 
 const findWinner = () => {
 
     for (let i = 0; i < winningCombinations.length; i++) {
+
+
 
         const [a, b, c] = winningCombinations[i];
         if (gameBoard.value[a] && gameBoard.value[a] === gameBoard.value[b] && gameBoard.value[a] === gameBoard.value[c]) {
@@ -59,15 +78,7 @@ const findWinner = () => {
         }
     }
 
-    const isBoardFull = gameBoard.value.every(cell => cell !== '');
-    if (isBoardFull) {
 
-        gameOver.value = true;
-        win.value = false;
-
-        return null;
-
-    }
 
 };
 
@@ -95,7 +106,9 @@ const handleClick = (index: number) => {
 
     if (!gameOver.value && !gameBoard.value[index]) {
         gameBoard.value[index] = currentPlayer.value!.role;
+
         findWinner();
+        checkDraw();
 
         if (winner.value) {
             gameOver.value = true;
@@ -104,22 +117,11 @@ const handleClick = (index: number) => {
         console.log(gameOver.value);
         console.log(winner.value);
 
-
-
-
         if (!gameOver.value) {
             togglePlayer();
 
         }
-
-
-
-
     }
-
-
-
-
 };
 
 
