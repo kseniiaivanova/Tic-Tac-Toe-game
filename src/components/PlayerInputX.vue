@@ -5,7 +5,14 @@ import { ref } from "vue";
 const state = ref<Player>(new Player("", "X", 0));
 
 const emit = defineEmits(["AddPlayerX"]);
-const handleClick = () => { emit("AddPlayerX", state.value); };
+
+const handleClick = () => {
+    if (state.value.name.trim() === "") {
+        alert("Please enter a valid name");
+        return;
+    }
+    emit("AddPlayerX", state.value);
+};
 </script>
 
 <template>
