@@ -22,6 +22,7 @@ const resetGame = () => {
 
 }
 
+
 </script>
 <template>
     <div v-if="!reset" class="score">
@@ -33,24 +34,24 @@ const resetGame = () => {
 
             <div class="playerX">
                 <p>{{ props.players[0].name }}</p>
-                <p v-if="props.winners && props.winners.length && props.players[0].name === props.winners[0].name"> {{
-                    props.winners[0].score }}</p>
+                <p v-if="props.winners && props.winners.find(winner => winner.name === props.players[0].name)">{{
+                    props.players[0].score }}</p>
                 <p v-else>0</p>
-
             </div>
 
             <div class="playerO">
                 <p>{{ props.players[1].name }}</p>
-                <p v-if="props.winners && props.winners.length > 1 && props.players[1].name === props.winners[1].name"> {{
-                    props.winners[1].score }}</p>
+                <p v-if="props.winners && props.winners.find(winner => winner.name === props.players[1].name)">{{
+                    props.players[1].score }}</p>
                 <p v-else>0</p>
             </div>
+
 
         </div>
         <div class="navigation">
             <button @click="$emit(`backToGame`)">Visa spel</button>
             <button @click="$emit(`startNew`)">Borja nytt spel</button>
-            <button @click="resetGame">Börja om från </button>
+            <button @click="resetGame">Börja om från början</button>
         </div>
     </div>
     <TickTackGame v-else></TickTackGame>

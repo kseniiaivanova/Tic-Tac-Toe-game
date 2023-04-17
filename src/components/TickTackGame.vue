@@ -13,7 +13,7 @@ let showInputs = ref(true);
 
 
 const addPlayerX = (playerX: Player) => {
-    console.log(playerX);
+
     players.value.push(playerX);
     show.value = false;
 

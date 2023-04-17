@@ -143,7 +143,7 @@ const startNew = () => {
 
 
 const showScore = () => {
-    console.log("Du klickade på Score")
+
     hideScore.value = false;
 };
 
