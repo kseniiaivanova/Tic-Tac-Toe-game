@@ -48,7 +48,7 @@ const checkDraw = () => {
         gameOver.value = true;
         win.value = false;
         winner.value = undefined;
-        console.log("hej");
+        
 
 
 
