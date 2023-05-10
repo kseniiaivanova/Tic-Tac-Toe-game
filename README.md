@@ -1,21 +1,27 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/-8w725Ou)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10822970&assignment_repo_type=AssignmentRepo)
+
 # Inlämningsuppgift Tre-i-rad
 
-Denna mall innehåller ett tomt vue-projekt baserat på typescript. Er uppgift är att skapa spelet tre-i-rad med hjälp av denna mall. Eftersom ni inte har någonting att utgå ifrån så har ni fria händer att skapa just er unika lösning.
+Det är ett vue-projekt baserat på typescript. Uppgiften var att skapa spelet tre-i-rad. 
 
-## Betyg G
+## Features
 
-- Kunna ange spelarnamn för X respektive O
-- Kunna spela ett spel och få en vinnare
-- Inte kunna göra fler drag efter spelet är slut
-- Kunna starta ett nytt spel
-- Använda minst en komponent
+- ange spelarnamn för X respektive O
+- spela ett spel och få en vinnare
+- inte göra fler drag efter spelet är slut
+- starta ett nytt spel
+- spara poänghistorik för spelarna
+- visa poängstatistiken
+- nollställa statistik och börja om med nya spelare
 
-## Betyg VG
+## Tech
 
-- Använda minst tre komponenter för er lösning
-- Spara poänghistorik för spelarna
-- Kunna visa poängstatistiken
-- Kunna stänga webbläsaren och komma tillbaka där spelet avbröts
-- Kunna nollställa statistik och börja om med nya spelare
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3)
+![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript)
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=flat-square&logo=vuedotjs)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white)
+
+## Run
+
+- npm i
+- npm run dev
